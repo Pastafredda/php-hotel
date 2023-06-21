@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-</head>
-<body>
-    
     <?php
         $hotels = [
 
@@ -51,13 +48,24 @@
         ];
        
         // var_dump($hotels);
-       
-
-        $values = array_values($hotels[0]);
-        // var_dump($keys);
-        // var_dump($value);
+        $parking = $_GET['parking'];
+        var_dump('parking');
 
     ?>
+</head>
+<body>
+    
+
+    <form action="">
+        <label for="parcheggio">Parcheggio</label>
+        <br>
+        <input type="radio" id="parking_yes" name="parking" value="yes">
+        <label for="parking_yes">Yes</label>
+        <input type="radio" id="parking_no" name="parking" value="no">
+        <label for="parking_no">No</label>
+        <br>
+        <input type="submit" value="SEARCH">
+    </form>
 
     <table class="table">
         <thead>
@@ -72,17 +80,19 @@
         <tbody>
             <?php
             foreach ($hotels as $hotel) {
-                 echo '<tr>';
-                    echo '<td>' . $hotel['name'] . '</td>';
-                    echo '<td>' . $hotel['description'] . '</td>';
-                    echo '<td>' . ($hotel['parking'] ? 'yes' : 'no')  . '</td>';
-                    echo '<td>' . $hotel['vote'] . '</td>';
-                    echo '<td>' . $hotel['distance_to_center'] . 'km' . '</td>';
-                 echo '</tr>';
+                
+                if ($parking === null || ($parking === 'yes' && $hotel['parking']) || ($parking === 'no' && !$hotel['parking']))  {
+                    echo '<tr>';
+                        echo '<td>' . $hotel['name'] . '</td>';
+                        echo '<td>' . $hotel['description'] . '</td>';
+                        echo '<td>' . ($hotel['parking'] ? 'yes' : 'no')  . '</td>';
+                        echo '<td>' . $hotel['vote'] . '</td>';
+                        echo '<td>' . $hotel['distance_to_center'] . 'km' . '</td>';
+                    echo '</tr>';
+                } 
             }
             ?>
-           
         </tbody>
-    </table>;
+    </table>
 </body>
 </html>
