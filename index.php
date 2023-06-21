@@ -51,61 +51,38 @@
         ];
        
         // var_dump($hotels);
-        // <table class="table">;
-        //     <thead>
-        //         <tr>
-        //         <th scope="col">#</th>
-        //         <th scope="col">First</th>
-        //         <th scope="col">Last</th>
-        //         <th scope="col">Handle</th>
-        //         </tr>
-        //     </thead>
-        //     <tbody>
-        //         <tr>
-        //         <th scope="row">1</th>
-        //         <td>Mark</td>
-        //         <td>Otto</td>
-        //         <td>@mdo</td>
-        //         </tr>
-        //         <tr>
-        //         <th scope="row">2</th>
-        //         <td>Jacob</td>
-        //         <td>Thornton</td>
-        //         <td>@fat</td>
-        //         </tr>
-        //         <tr>
-        //         <th scope="row">3</th>
-        //         <td colspan="2">Larry the Bird</td>
-        //         <td>@twitter</td>
-        //         </tr>
-        //     </tbody>
-        // </table>;
+       
 
         $values = array_values($hotels[0]);
         // var_dump($keys);
         // var_dump($value);
 
-        echo "<table>";
-            echo "<thead>" ;
-                echo "<tr>";
-                    echo '<th scope="col"> Name </th>';
-                    echo '<th scope="col"> Descrizione </th>';                
-                    echo '<th scope="col"> Parcheggio </th>';                
-                    echo '<th scope="col"> Voto </th>';       
-                    echo '<th scope="col"> Distanza dal centro in km </th>';                
-               
-                "</tr>";
-            "</thead>";
-            echo "<tbody>" ;
-                echo "<tr>";
-                foreach ($values as $value) {
-                    echo "<td>" . $value .  "</td>";
-                }
-                "</tr>";
-            "</tbody>";
-            
-        echo "</table>";
-    
     ?>
+
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Parking</th>
+            <th scope="col">Vote</th>
+            <th scope="col">Distance to center</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            foreach ($hotels as $hotel) {
+                 echo '<tr>';
+                    echo '<td>' . $hotel['name'] . '</td>';
+                    echo '<td>' . $hotel['description'] . '</td>';
+                    echo '<td>' . ($hotel['parking'] ? 'yes' : 'no')  . '</td>';
+                    echo '<td>' . $hotel['vote'] . '</td>';
+                    echo '<td>' . $hotel['distance_to_center'] . 'km' . '</td>';
+                 echo '</tr>';
+            }
+            ?>
+           
+        </tbody>
+    </table>;
 </body>
 </html>
