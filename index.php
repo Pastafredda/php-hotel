@@ -49,8 +49,14 @@
        
         // var_dump($hotels);
         $parking = $_GET['parking'];
-        var_dump('parking');
+        echo "parking";
+        var_dump($parking);
 
+        echo "<br>";
+
+        $vote = $_GET['vote'];
+        echo "vote";
+        var_dump($vote);
     ?>
 </head>
 <body>
@@ -63,6 +69,17 @@
         <label for="parking_yes">Yes</label>
         <input type="radio" id="parking_no" name="parking" value="no">
         <label for="parking_no">No</label>
+        <br>
+        <label for="vote">Vote</label>
+        <select name="vote" id="vote">
+            <option value="-1">Seleziona voto minimo </option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+        </select>
+        <br>
         <br>
         <input type="submit" value="SEARCH">
     </form>
@@ -81,7 +98,7 @@
             <?php
             foreach ($hotels as $hotel) {
                 
-                if ($parking === null || ($parking === 'yes' && $hotel['parking']) || ($parking === 'no' && !$hotel['parking']))  {
+                if (($parking === null || ($parking === 'yes' && $hotel['parking']) || ($parking === 'no' && !$hotel['parking'])) && $vote <= $hotel['vote'])  {
                     echo '<tr>';
                         echo '<td>' . $hotel['name'] . '</td>';
                         echo '<td>' . $hotel['description'] . '</td>';
